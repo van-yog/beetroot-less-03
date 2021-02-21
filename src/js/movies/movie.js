@@ -1,15 +1,14 @@
 import Media from "./media";
 
-function Movie(title, duration, year) {
-  Media.call(this, title, duration);
-  this.year = year;
+class Movie extends Media {
+  constructor(title, duration, year) {
+    super(title, duration);
+    this.year = year;
+  }
+
+  get info() {
+    return `Year : ${this.year}`;
+  }
 }
-
-Movie.prototype = Object.create(Media.prototype);
-Movie.prototype.constructor = Movie;
-
-Movie.prototype.getInfo = function () {
-  return `Year ${this.duration}`;
-};
 
 export default Movie;

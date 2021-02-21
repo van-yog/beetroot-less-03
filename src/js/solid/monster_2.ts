@@ -1,10 +1,33 @@
+class OrderProcess {
+    static perfom() {
+        return (new OrderProcess).handle();
+    }
 
+    private handle() {
+        this.checkCart().checkOrder().sendSms()
+    }
 
-class PurchasesController {
-    public store() {
-        // check cart
-        // check order
-        // send api to server
-        // send sms
+    private checkCart() {
+        console.log('check cart');
+        return this;
+    }
+    private checkOrder() {
+        console.log('check order');
+        return this;
+    }
+    private sendSms() {
+        console.log('send sms');
+        return this;
     }
 }
+
+
+
+class Purchases {
+    public store() {
+        OrderProcess.perfom();
+    }
+}
+
+let purchases = new Purchases();
+purchases.store();

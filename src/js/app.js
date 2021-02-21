@@ -1,27 +1,14 @@
-function Person(firstName) {
-  //{}, this = {}, return this
-  this.firstName = firstName;
-  // console.log("this=", this);
-}
-Person.prototype.sayName = function () {
-  console.log("Hello " + this.firstName);
+const state = {
+  showCompleted: true,
+  tasks: [{ id: 1 }, { id: 2 }],
 };
 
-function Student(firstName, lastName) {
-  Person.call(this, firstName);
-  this.lastName = lastName;
-}
+// создаем копию объекта деструктуризацией + добавляем повторно поле.
+// объект два одинаковых поля удалит ( оптимизирует ) и это будет копия объекта
+const newState = { ...state, tasks: [...state.tasks] };
+console.log("NewState", newState.tasks);
+console.log(state.tasks === newState.tasks);
 
-Object.setPrototypeOf(Student, Person);
-
-Student.isStudent = function (ob) {
-  return ob.constructor === Student;
-};
-console.log(Student.prototype.constructor);
-
-Student.prototype.isStudent = true;
-
-const p = new Person("Bill");
-const s = new Student("John", "Lennon");
-
-console.log(Student.isStudent(s));
+newState.tasks.push({ id: 333 });
+console.log("state", state.tasks);
+console.log("NewState", newState.tasks);
